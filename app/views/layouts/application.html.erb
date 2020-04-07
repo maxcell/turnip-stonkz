@@ -12,13 +12,20 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <nav>
     <% if user_signed_in? %>
       <ul>
-      <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to "Your Boards", boards_path %></li>
+        <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Home", "/" %></li>
+        <li><%= link_to "Your Boards", boards_path %></li>
+      </ul>
     <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
+    <ul>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+    </ul>
     <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
