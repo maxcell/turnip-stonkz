@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  belongs_to: 
+  price: 1
+  time_submitted: 2020-04-06 19:47:20
+
+two:
+  belongs_to: 
+  price: 1
+  time_submitted: 2020-04-06 19:47:20
