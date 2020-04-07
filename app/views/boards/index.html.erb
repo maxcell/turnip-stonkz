@@ -11,7 +11,7 @@
 <p>You're a member of the following private turnip boards owned by somone else:</p>
 
 <% current_user.boards.each do |board| %>
-    <p>board.owner.display_name</p>
+    <p><%= link_to board.owner.display_name, board_path(board) %></p>
 <% end %>
 
 <% end %>
