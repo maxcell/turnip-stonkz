@@ -1,9 +1,9 @@
 <h2>Selling Prices in <%= @board.owner.display_name %>'s Board:</h2>
 <% @board.participants.each do |user| %>
     <p><%= user.display_name %> - 
-    <% if user.latest_buying_price.nil? %>
+    <% if user.latest_selling_price.nil? %>
         No Price set </p>
     <% else %>
-        <%= user.latest_buying_price.price %> Bells</p>
+        <%= user.latest_selling_price.price %> Bells</p>
     <% end %>
 <% end %>

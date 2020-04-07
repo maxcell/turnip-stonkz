@@ -22,6 +22,10 @@ class User < ApplicationRecord
        self.buying_prices.order(time_submitted: :desc).first
     end
 
+    def latest_selling_price
+        self.selling_prices.order(time_submitted: :desc).first
+    end
+
     def email_required?
         false
     end
