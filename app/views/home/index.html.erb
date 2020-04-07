@@ -1,1 +1,39 @@
-Welcome to the stonks page.
+<% if user_signed_in? %>
+<p>Welcome to the stonks page, <%= @current_user.display_name %>.</p>
+
+
+    <h3>Buying Price</h3>
+    <%= form_with model: BuyingPrice.new, url: buying_path do |f| %>
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+        <%= f.label :amount %>
+        <%= f.number_field :amount, step: 10 %>
+        <%= f.label :time_submitted %>
+        <%= f.date_field :time_submitted %>
+        <%= f.submit "Add Buying Price & Amount" %>
+    <% end %>
+    <% if current_user.latest_buying_price.nil? %>
+        <p>No prices stored.</p>
+    <% else %>
+        <p>Latest Buying Price: <%= latest_buying_price(current_user) %> on <em><b><%= latest_buying_date(current_user) %></b></em></p>
+    <%end %>
+
+    <h3>Selling Price</h3>
+    <%= form_with model: SellingPrice.new, url: selling_path do |f| %>
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+        <%= f.label :time_submitted %>
+        <%= f.date_field :time_submitted %>
+        <%= f.submit "Add Selling Price" %>
+    <% end %>
+
+    <% if selling_info(current_user).empty? %>
+        <p>No prices stored.</p>
+    <% else %>
+        <% selling_info(current_user).each do |sp| %>
+            <p>Selling Price: <%= sp[:price] %> on <em><b><%= sp[:date] %></b></em></p>
+        <% end %>
+    <% end %>
+
+
+<% end %>

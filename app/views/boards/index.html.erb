@@ -1,0 +1,26 @@
+<p>You can join your friend's board by entering their code here:</p>
+
+<%= form_with url: join_path do |f| %>
+    <%= f.text_field :invite_code %>
+    <%= f.submit "Join" %>
+<% end %>
+
+<% unless current_user.boards.empty? %>
+--- Private Board Memberships ---
+
+<p>You're a member of the following private turnip boards owned by somone else:</p>
+
+<% current_user.boards.each do |board| %>
+    <p>board.owner.display_name</p>
+<% end %>
+
+<% end %>
+
+
+
+--- Your Private Board ---
+<p>You have a private turnip board that only you and its members can <%= link_to "view", board_path(current_user.board) %> </p>
+
+<ul>
+    <li>Others can join if you give them your invite code: <code style="background-color: black;color: white;"><%= current_user.invite_code %></code></li>
+</ul>
