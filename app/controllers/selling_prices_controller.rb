@@ -1,7 +1,6 @@
 class SellingPricesController < ApplicationController
     def create
         selling_price = SellingPrice.new(selling_price_params)
-        byebug
         selling_price.user = current_user
 
         if selling_price.valid? 

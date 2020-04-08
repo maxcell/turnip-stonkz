@@ -23,7 +23,21 @@ class User < ApplicationRecord
     end
 
     def latest_selling_price
-        self.selling_prices.order(time_submitted: :desc).first
+        # If there are two selling prices on the same day, default to the "latest" one
+        # 04/07/2020 - Morning
+        # 04/07/2020 - Evening - "date_created" (fallback)
+        # 04/07/2020 - Evening - "date_created" (fallback)
+        latest_prices = self.selling_prices.order(time_submitted: :desc, date_created: :desc).limit(2)
+
+        if latest_prices.count < 2
+            return latest_prices.first
+        end
+
+        if latest_prices.first.time_submitted == latest_prices.second.time_submitted
+            return latest_prices.first if latest_prices.first.time_of_day == latest_prices.second.time_of_day 
+        end
+
+        return latest_prices.first
     end
 
     def email_required?
