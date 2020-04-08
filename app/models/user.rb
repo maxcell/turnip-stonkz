@@ -27,7 +27,7 @@ class User < ApplicationRecord
         # 04/07/2020 - Morning
         # 04/07/2020 - Evening - "date_created" (fallback)
         # 04/07/2020 - Evening - "date_created" (fallback)
-        self.selling_prices.order(time_submitted: :desc).first
+        self.selling_prices.order(time_submitted: :desc, created_at: :desc).first
     end
 
     def email_required?
