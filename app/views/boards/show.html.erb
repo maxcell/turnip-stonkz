@@ -4,6 +4,6 @@
     <% if user.latest_selling_price.nil? %>
         No Price set </p>
     <% else %>
-        <%= user.latest_selling_price.price %> Bells</p>
+        <%= user.latest_selling_price.price %> Bells on <em><b><%= I18n.l(user.latest_selling_price.time_submitted, format: "%a, %-d %b %Y") %></b></em> in the <%= user.latest_selling_price.time_of_day %></p>
     <% end %>
 <% end %>
