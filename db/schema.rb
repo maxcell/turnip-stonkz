@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_025148) do
+ActiveRecord::Schema.define(version: 2020_04_08_001138) do
 
   create_table "boards", force: :cascade do |t|
     t.integer "owner_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_025148) do
     t.datetime "time_submitted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "time_of_day", default: "morning", null: false
     t.index ["user_id"], name: "index_selling_prices_on_user_id"
   end
 

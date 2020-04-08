@@ -24,6 +24,11 @@
         <%= f.number_field :price %>
         <%= f.label :time_submitted %>
         <%= f.date_field :time_submitted %>
+        <fieldset>
+            <legend>Time of Day</legend>
+            <label><%= f.radio_button :time_of_day, "morning" %> Morning</label>
+            <label><%= f.radio_button :time_of_day, "evening" %> Evening</label>
+        </fieldset>
         <%= f.submit "Add Selling Price" %>
     <% end %>
 
@@ -31,7 +36,7 @@
         <p>No prices stored.</p>
     <% else %>
         <% selling_info(current_user).each do |sp| %>
-            <p>Selling Price: <%= sp[:price] %> on <em><b><%= sp[:date] %></b></em></p>
+            <p>Selling Price: <%= sp[:price] %> on <em><b><%= sp[:date] %></b></em> in the <%= sp[:time_of_day] %></p>
         <% end %>
     <% end %>
 
